@@ -4,9 +4,14 @@
 }
 
 <h2>Details</h2>
-
-<a href="#" class="btn btn-primary">Back to Todoes</a>
-
+<div class="form-group">
+	@Html.ActionLink("Back to Todoes", // <-- Link text
+								 "Index", // <-- Action Method Name
+								 "Todoes", // <-- Controller Name
+								 null, // <-- Route value
+								 new { @class="btn btn-primary"} // <-- htmlArguments
+								 )
+</div>
 <div class="panel panel-primary">
 	<div class="panel-heading">Todo Description: </div>
 	<div class="panel-body">
