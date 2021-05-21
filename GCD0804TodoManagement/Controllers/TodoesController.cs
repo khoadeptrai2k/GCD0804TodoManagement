@@ -49,5 +49,10 @@ namespace GCD0804TodoManagement.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult Edit()
+		{
+			return View();
+		}
 	}
 }
