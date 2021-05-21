@@ -5,6 +5,15 @@
 
 <h2>Index of TodoesController</h2>
 
+<div class="form-group">
+	@Html.ActionLink("Add new Todo", // <-- Link text
+						 "Create", // <-- Action Method Name
+						 "Todoes", // <-- Controller Name
+						 null, // <-- Route value
+						 new { @class = "btn btn-info" } // <-- htmlArguments
+						 )
+</div>
+
 <table class="table">
 	<thead class="thead-light">
 		<tr>
