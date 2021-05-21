@@ -1,4 +1,4 @@
-﻿
+﻿@model GCD0804TodoManagement.Models.Todo
 @{
 	ViewBag.Title = "Details";
 }
@@ -9,14 +9,14 @@
 								 "Index", // <-- Action Method Name
 								 "Todoes", // <-- Controller Name
 								 null, // <-- Route value
-								 new { @class="btn btn-primary"} // <-- htmlArguments
+								 new { @class = "btn btn-primary" } // <-- htmlArguments
 								 )
 </div>
 <div class="panel panel-primary">
-	<div class="panel-heading">Todo Description: </div>
+	<div class="panel-heading">Todo Description: @Model.Description </div>
 	<div class="panel-body">
-		<p>Category: </p>
-		<p>Due Date: </p>
+		<p>Category: @Model.Category </p>
+		<p>Due Date: @Model.DueDate</p>
 	</div>
 </div>
 
