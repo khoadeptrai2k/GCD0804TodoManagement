@@ -34,5 +34,10 @@ namespace GCD0804TodoManagement.Controllers
 		{
 			return View(_todoes);
 		}
+
+		public ActionResult Details()
+		{
+			return View();
+		}
 	}
 }
