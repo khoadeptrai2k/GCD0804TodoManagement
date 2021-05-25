@@ -178,6 +178,10 @@
     <Compile Include="Migrations\202105250050323_CreateTodoesTable.Designer.cs">
       <DependentUpon>202105250050323_CreateTodoesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105250233214_AddRequiredAttributeToTodoClass.cs" />
+    <Compile Include="Migrations\202105250233214_AddRequiredAttributeToTodoClass.Designer.cs">
+      <DependentUpon>202105250233214_AddRequiredAttributeToTodoClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -266,6 +270,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105250050323_CreateTodoesTable.resx">
       <DependentUpon>202105250050323_CreateTodoesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105250233214_AddRequiredAttributeToTodoClass.resx">
+      <DependentUpon>202105250233214_AddRequiredAttributeToTodoClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
