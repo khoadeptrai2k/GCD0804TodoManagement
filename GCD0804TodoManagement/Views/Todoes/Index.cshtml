@@ -38,7 +38,7 @@
 				<th scope="row">@todo.Id</th>
 				<td>@todo.Description</td>
 				<td>@todo.Category</td>
-				<td>@todo.DueDate</td>
+				<td>@todo.DueDate.ToString("dd/MMM/yyyy")</td>
 				<td>
 					@Html.ActionLink("Details", // <-- Link text
 								 "Details", // <-- Action Method Name
@@ -46,7 +46,12 @@
 								 new { id = todo.Id }, // <-- Route value
 								 new { @class = "btn btn-info" } // <-- htmlArguments
 								 )
-					<a href="#" class="btn btn-default">Edit</a>
+					@Html.ActionLink("Edit", // <-- Link text
+													 "Edit", // <-- Action Method Name
+													 "Todoes", // <-- Controller Name
+													 new { id = todo.Id }, // <-- Route value
+													 new { @class = "btn btn-default" } // <-- htmlArguments
+												 )
 
 					@Html.ActionLink("Delete", // <-- Link text
 													 "Delete", // <-- Action Method Name

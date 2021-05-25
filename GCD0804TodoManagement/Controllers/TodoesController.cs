@@ -79,9 +79,16 @@ namespace GCD0804TodoManagement.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public ActionResult Edit()
+		[HttpGet]
+		public ActionResult Edit(int? id)
 		{
-			return View();
+			if (id == null) return HttpNotFound();
+
+			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == id);
+
+			if (todoInDb == null) return HttpNotFound();
+
+			return View(todoInDb);
 		}
 	}
 }
