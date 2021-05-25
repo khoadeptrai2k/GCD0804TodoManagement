@@ -1,6 +1,7 @@
 ﻿using GCD0804TodoManagement.Models;
 using Microsoft.Ajax.Utilities;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace GCD0804TodoManagement.Controllers
@@ -28,8 +29,10 @@ namespace GCD0804TodoManagement.Controllers
 			return View(todoesInDb);
 		}
 
-		public ActionResult Details(int id)
+		public ActionResult Details(int? id)
 		{
+			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
 			var todo = _context.Todoes.SingleOrDefault(t => t.Id == id);
 
 			if (todo == null) return HttpNotFound();
@@ -40,7 +43,7 @@ namespace GCD0804TodoManagement.Controllers
 		[HttpGet]
 		public ActionResult Delete(int? id)
 		{
-			if (id == null) return HttpNotFound();
+			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
 			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == id);
 
@@ -82,13 +85,34 @@ namespace GCD0804TodoManagement.Controllers
 		[HttpGet]
 		public ActionResult Edit(int? id)
 		{
-			if (id == null) return HttpNotFound();
+			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
 			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == id);
 
 			if (todoInDb == null) return HttpNotFound();
 
 			return View(todoInDb);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(Todo todo)
+		{
+			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == todo.Id);
+
+			if (!ModelState.IsValid)
+			{
+				return View(todo);
+			}
+
+			if (todoInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+			todoInDb.Description = todo.Description;
+			todoInDb.Category = todo.Category;
+			todoInDb.DueDate = todo.DueDate;
+
+			_context.SaveChanges();
+
+			return RedirectToAction("Index");
 		}
 	}
 }
