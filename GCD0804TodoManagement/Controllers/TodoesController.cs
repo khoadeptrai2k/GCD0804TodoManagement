@@ -30,6 +30,21 @@ namespace GCD0804TodoManagement.Controllers
 		}
 
 		[HttpGet]
+		public ActionResult Delete(int? id)
+		{
+			if (id == null) return HttpNotFound();
+
+			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == id);
+
+			if (todoInDb == null) return HttpNotFound();
+
+			_context.Todoes.Remove(todoInDb);
+			_context.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet]
 		public ActionResult Create()
 		{
 			return View();

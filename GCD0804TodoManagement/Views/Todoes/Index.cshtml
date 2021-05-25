@@ -40,7 +40,12 @@
 								 new { @class = "btn btn-info" } // <-- htmlArguments
 								 )
 					<a href="#" class="btn btn-default">Edit</a>
-					<a href="#" class="btn btn-danger">Delete</a>
+					@Html.ActionLink("Delete", // <-- Link text
+													 "Delete", // <-- Action Method Name
+													 "Todoes", // <-- Controller Name
+													 new { id = todo.Id }, // <-- Route value
+													 new { @class = "btn btn-danger" } // <-- htmlArguments
+												 )
 				</td>
 			</tr>
 		}
