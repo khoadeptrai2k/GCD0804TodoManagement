@@ -57,9 +57,13 @@ namespace GCD0804TodoManagement.Controllers
 		[HttpGet]
 		public ActionResult Delete(int? id)
 		{
+			var userId = User.Identity.GetUserId();
+
 			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == id);
+			var todoInDb = _context.Todoes
+				.Where(t => t.UserId.Equals(userId))
+				.SingleOrDefault(t => t.Id == id);
 
 			if (todoInDb == null) return HttpNotFound();
 
@@ -85,14 +89,22 @@ namespace GCD0804TodoManagement.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(todo);
+				var viewModel = new TodoCategoriesViewModel()
+				{
+					Todo = todo,
+					Categories = _context.Categories.ToList()
+				};
+
+				return View(viewModel);
 			}
 
+			var userId = User.Identity.GetUserId();
 			var newTodo = new Todo()
 			{
 				Description = todo.Description,
 				CategoryId = todo.CategoryId,
-				DueDate = todo.DueDate
+				DueDate = todo.DueDate,
+				UserId = userId
 			};
 
 			_context.Todoes.Add(newTodo);
@@ -106,7 +118,11 @@ namespace GCD0804TodoManagement.Controllers
 		{
 			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == id);
+			var userId = User.Identity.GetUserId();
+
+			var todoInDb = _context.Todoes
+				.Where(t => t.UserId.Equals(userId))
+				.SingleOrDefault(t => t.Id == id);
 
 			if (todoInDb == null) return HttpNotFound();
 
@@ -122,11 +138,19 @@ namespace GCD0804TodoManagement.Controllers
 		[HttpPost]
 		public ActionResult Edit(Todo todo)
 		{
-			var todoInDb = _context.Todoes.SingleOrDefault(t => t.Id == todo.Id);
+			var userId = User.Identity.GetUserId();
+			var todoInDb = _context.Todoes
+				.Where(t => t.UserId.Equals(userId))
+				.SingleOrDefault(t => t.Id == todo.Id);
 
 			if (!ModelState.IsValid)
 			{
-				return View(todo);
+				var viewModel = new TodoCategoriesViewModel
+				{
+					Todo = todo,
+					Categories = _context.Categories.ToList()
+				};
+				return View(viewModel);
 			}
 
 			if (todoInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -143,9 +167,10 @@ namespace GCD0804TodoManagement.Controllers
 		public ActionResult ReportCategoryByName()
 		{
 			List<CategoryQuantityByName> viewModel = new List<CategoryQuantityByName>();
-
+			var userId = User.Identity.GetUserId();
 			var todoes = _context.Todoes
 				.Include(t => t.Category)
+				.Where(t => t.UserId.Equals(userId))
 				.ToList();
 
 			var groupByCategoryName = todoes.GroupBy(t => t.Category.Name).ToList();

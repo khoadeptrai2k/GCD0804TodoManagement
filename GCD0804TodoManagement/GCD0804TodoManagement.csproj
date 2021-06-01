@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202106010322111_AddUserIdFKToTodoModel.Designer.cs">
       <DependentUpon>202106010322111_AddUserIdFKToTodoModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106010418026_RemoveRequiredForUserIdInTodoModel.cs" />
+    <Compile Include="Migrations\202106010418026_RemoveRequiredForUserIdInTodoModel.Designer.cs">
+      <DependentUpon>202106010418026_RemoveRequiredForUserIdInTodoModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -291,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106010322111_AddUserIdFKToTodoModel.resx">
       <DependentUpon>202106010322111_AddUserIdFKToTodoModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106010418026_RemoveRequiredForUserIdInTodoModel.resx">
+      <DependentUpon>202106010418026_RemoveRequiredForUserIdInTodoModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
