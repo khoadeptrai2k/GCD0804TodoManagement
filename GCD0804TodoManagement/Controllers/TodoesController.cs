@@ -1,5 +1,6 @@
 ﻿using GCD0804TodoManagement.Models;
 using Microsoft.Ajax.Utilities;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -19,7 +20,9 @@ namespace GCD0804TodoManagement.Controllers
 		[HttpGet]
 		public ActionResult Index(string searchString)
 		{
-			var todoesInDb = _context.Todoes.ToList();
+			var todoesInDb = _context.Todoes
+				.Include(t => t.Category)
+				.ToList();
 
 			if (!searchString.IsNullOrWhiteSpace())
 			{
@@ -33,7 +36,9 @@ namespace GCD0804TodoManagement.Controllers
 		{
 			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-			var todo = _context.Todoes.SingleOrDefault(t => t.Id == id);
+			var todo = _context.Todoes
+				.Include(t => t.Category)
+				.SingleOrDefault(t => t.Id == id);
 
 			if (todo == null) return HttpNotFound();
 
