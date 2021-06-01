@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace GCD0804TodoManagement.Controllers
 {
+	[Authorize]
 	public class TodoesController : Controller
 	{
 		private ApplicationDbContext _context;
