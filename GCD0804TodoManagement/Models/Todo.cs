@@ -18,5 +18,9 @@ namespace GCD0804TodoManagement.Models
 		[Required]
 		public int CategoryId { get; set; }       // Forgein Key
 		public Category Category { get; set; }    // Linking Object to Category model
+		[Required]
+		[ForeignKey("User")]
+		public string UserId { get; set; }
+		public ApplicationUser User { get; set; }
 	}
 }
