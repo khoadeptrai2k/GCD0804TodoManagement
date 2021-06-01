@@ -83,7 +83,7 @@ namespace GCD0804TodoManagement.Controllers
 			var newTodo = new Todo()
 			{
 				Description = todo.Description,
-				Category = todo.Category,
+				CategoryId = todo.CategoryId,
 				DueDate = todo.DueDate
 			};
 
@@ -102,7 +102,13 @@ namespace GCD0804TodoManagement.Controllers
 
 			if (todoInDb == null) return HttpNotFound();
 
-			return View(todoInDb);
+			var viewModel = new TodoCategoriesViewModel
+			{
+				Todo = todoInDb,
+				Categories = _context.Categories.ToList()
+			};
+
+			return View(viewModel);
 		}
 
 		[HttpPost]
