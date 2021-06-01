@@ -29,7 +29,7 @@ namespace GCD0804TodoManagement.Controllers
 			return View(todoesInDb);
 		}
 
-		public ActionResult Details(int? id)
+		public ActionResult Details(int? id) // ? id can be null
 		{
 			if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
