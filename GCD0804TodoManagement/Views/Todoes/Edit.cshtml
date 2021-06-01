@@ -9,6 +9,7 @@
 
 @using (Html.BeginForm("Edit", "Todoes", FormMethod.Post))
 {
+	@Html.HiddenFor(m => m.Todo.Id)
 	<div class="form-group">
 		@Html.LabelFor(m => m.Todo.Description)
 		@Html.EditorFor(m => m.Todo.Description,

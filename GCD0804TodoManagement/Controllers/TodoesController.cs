@@ -124,7 +124,7 @@ namespace GCD0804TodoManagement.Controllers
 			if (todoInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
 			todoInDb.Description = todo.Description;
-			todoInDb.Category = todo.Category;
+			todoInDb.CategoryId = todo.CategoryId;
 			todoInDb.DueDate = todo.DueDate;
 
 			_context.SaveChanges();
