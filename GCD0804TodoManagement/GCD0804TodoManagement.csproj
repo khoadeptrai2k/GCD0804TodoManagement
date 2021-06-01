@@ -182,6 +182,10 @@
     <Compile Include="Migrations\202105250233214_AddRequiredAttributeToTodoClass.Designer.cs">
       <DependentUpon>202105250233214_AddRequiredAttributeToTodoClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106010101579_AddCategoriesTable.cs" />
+    <Compile Include="Migrations\202106010101579_AddCategoriesTable.Designer.cs">
+      <DependentUpon>202106010101579_AddCategoriesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -274,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105250233214_AddRequiredAttributeToTodoClass.resx">
       <DependentUpon>202105250233214_AddRequiredAttributeToTodoClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106010101579_AddCategoriesTable.resx">
+      <DependentUpon>202106010101579_AddCategoriesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
