@@ -1,6 +1,7 @@
 ﻿using GCD0804TodoManagement.Models;
 using GCD0804TodoManagement.ViewModels;
 using Microsoft.Ajax.Utilities;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -130,6 +131,29 @@ namespace GCD0804TodoManagement.Controllers
 			_context.SaveChanges();
 
 			return RedirectToAction("Index");
+		}
+
+		public ActionResult ReportCategoryByName()
+		{
+			List<CategoryQuantityByName> viewModel = new List<CategoryQuantityByName>();
+
+			var todoes = _context.Todoes
+				.Include(t => t.Category)
+				.ToList();
+
+			var groupByCategoryName = todoes.GroupBy(t => t.Category.Name).ToList();
+
+			foreach (var categoryGroupName in groupByCategoryName)
+			{
+				var categoryQuantity = categoryGroupName.Select(t => t.Category).Count();
+				viewModel.Add(new CategoryQuantityByName
+				{
+					CategoryName = categoryGroupName.Key,
+					CategoryQuantity = categoryQuantity
+				});
+			}
+
+			return View(viewModel);
 		}
 	}
 }

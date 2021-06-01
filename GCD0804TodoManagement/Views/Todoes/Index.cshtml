@@ -20,6 +20,14 @@
 	<button type="submit"><i class="fa fa-search"></i></button>
 }
 
+<div class="form-group">
+	@Html.ActionLink("Report Todoes by Category Name", // <-- Link text
+						 "ReportCategoryByName", // <-- Action Method Name
+						 "Todoes", // <-- Controller Name
+						 null, // <-- Route value
+						 new { @class = "btn btn-default" } // <-- htmlArguments
+						 )
+</div>
 
 <table class="table">
 	<thead class="thead-light">
