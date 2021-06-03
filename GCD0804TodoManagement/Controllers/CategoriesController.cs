@@ -31,6 +31,18 @@ namespace GCD0804TodoManagement.Controllers
     [Authorize(Roles = "manager")]
     public ActionResult Create(Category model)
     {
+      if (!ModelState.IsValid)
+      {
+        return View(model);
+      }
+
+      var category = new Category
+      {
+        Name = model.Name
+      };
+
+      _context.Categories.Add(category);
+      _context.SaveChanges();
       return RedirectToAction("Index");
     }
   }
