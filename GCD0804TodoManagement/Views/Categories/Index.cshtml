@@ -5,6 +5,15 @@
 
 <h2>Category List</h2>
 
+<div class="form-group">
+  @Html.ActionLink(
+  "Create a new Category",
+  "Create",
+  "Categories",
+  new { @class = "btn btn-primary" }
+  )
+</div>
+
 <table class="table">
   <thead class="thead-light">
     <tr>
