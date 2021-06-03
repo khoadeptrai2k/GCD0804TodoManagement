@@ -10,9 +10,9 @@ indent_style = space
 indent_size = 2
 
 # C# or VB files
-[*.{cs,vb}]
-guidelines = 95, 120
+[*.{cs,vb,cshtml}]
+guidelines = 95
 
-[*.{cs,vb}]
+[*.{cs,vb,cshtml}]
 # ARGB color format (red with 25% opacity)
 guidelines_style = 2.5px solid 40ff0000
