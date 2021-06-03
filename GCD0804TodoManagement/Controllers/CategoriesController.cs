@@ -42,7 +42,16 @@ namespace GCD0804TodoManagement.Controllers
       };
 
       _context.Categories.Add(category);
-      _context.SaveChanges();
+      try
+      {
+        _context.SaveChanges();
+
+      }
+      catch (System.Data.Entity.Infrastructure.DbUpdateException)
+      {
+        ModelState.AddModelError("", "Category Name alreay exists");
+        return View(model);
+      }
       return RedirectToAction("Index");
     }
   }
