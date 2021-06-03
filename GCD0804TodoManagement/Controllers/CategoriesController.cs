@@ -1,4 +1,5 @@
 ﻿using GCD0804TodoManagement.Models;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace GCD0804TodoManagement.Controllers
@@ -15,7 +16,8 @@ namespace GCD0804TodoManagement.Controllers
     [Authorize(Roles = "user, manager")]
     public ActionResult Index()
     {
-      return View();
+      var categories = _context.Categories.ToList();
+      return View(categories);
     }
 
     [HttpGet]

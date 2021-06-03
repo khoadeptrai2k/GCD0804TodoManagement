@@ -1,0 +1,52 @@
+﻿@model IEnumerable<GCD0804TodoManagement.Models.Category>
+@{
+  ViewBag.Title = "Index";
+}
+
+<h2>Category List</h2>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category Name</th>
+      @if (User.IsInRole("manager"))
+      {
+        <th scope="col">Actions</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var category in Model)
+    {
+      <tr>
+        <th scope="row">@category.Id</th>
+        <td>@category.Name</td>
+        @if (User.IsInRole("manager"))
+        {
+          <td>
+            @Html.ActionLink("Details", // <-- Link text
+                   "Details", // <-- Action Method Name
+                   "Categories", // <-- Controller Name
+                   new { id = category.Id }, // <-- Route value
+                   new { @class = "btn btn-info" } // <-- htmlArguments
+                   )
+            @Html.ActionLink("Edit", // <-- Link text
+                             "Edit", // <-- Action Method Name
+                             "Categories", // <-- Controller Name
+                             new { id = category.Id }, // <-- Route value
+                             new { @class = "btn btn-default" } // <-- htmlArguments
+                           )
+
+            @Html.ActionLink("Delete", // <-- Link text
+                             "Delete", // <-- Action Method Name
+                             "Categories", // <-- Controller Name
+                             new { id = category.Id }, // <-- Route value
+                             new { @class = "btn btn-danger" } // <-- htmlArguments
+                           )
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
