@@ -1,9 +1,23 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Microsoft.AspNet.Identity
+@{
+  ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>Todo Management Application</h1>
-    <p class="lead">An application built with ASP.NET MVC5</p>
+  <h1>Todo Management Application</h1>
+  @if (User.IsInRole("user"))
+  {
+    <h2>Welcome User</h2>
+  }
+  @if (User.IsInRole("manager"))
+  {
+    <h2>Welcome Manager</h2>
+  }
+  @if (Request.IsAuthenticated)
+  {
+    <p>Username: @User.Identity.GetUserName()</p>
+  }
+
+  <p class="lead">An application built with ASP.NET MVC5</p>
 </div>
 
