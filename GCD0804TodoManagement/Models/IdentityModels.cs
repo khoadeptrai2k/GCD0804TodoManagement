@@ -30,6 +30,8 @@ namespace GCD0804TodoManagement.Models
     public DbSet<UserInfo> UserInfos { get; set; }
     public DbSet<Team> Teams { get; set; }
 
+    public DbSet<TeamUser> TeamsUsers { get; set; }
+
     public static ApplicationDbContext Create()
     {
       return new ApplicationDbContext();
