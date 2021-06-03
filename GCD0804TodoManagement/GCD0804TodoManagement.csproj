@@ -204,11 +204,16 @@
     <Compile Include="Migrations\202106030857084_AddUniqueConstraintToNamePropertyInCategoryModel.Designer.cs">
       <DependentUpon>202106030857084_AddUniqueConstraintToNamePropertyInCategoryModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106030919206_AddTeamsTable.cs" />
+    <Compile Include="Migrations\202106030919206_AddTeamsTable.Designer.cs">
+      <DependentUpon>202106030919206_AddTeamsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Todo.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106030857084_AddUniqueConstraintToNamePropertyInCategoryModel.resx">
       <DependentUpon>202106030857084_AddUniqueConstraintToNamePropertyInCategoryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106030919206_AddTeamsTable.resx">
+      <DependentUpon>202106030919206_AddTeamsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
