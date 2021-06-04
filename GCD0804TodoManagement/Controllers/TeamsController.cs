@@ -41,11 +41,18 @@ namespace GCD0804TodoManagement.Controllers
     {
       var users = _context.Users.ToList();
 
+      var usersInTeam = _context.TeamsUsers
+        .Where(t => t.TeamId == id)
+        .Select(t => t.User)
+        .ToList();
+
       var usersWithUserRole = new List<ApplicationUser>();
 
       foreach (var user in users)
       {
-        if (_userManager.GetRoles(user.Id)[0].Equals("user"))
+        if (_userManager.GetRoles(user.Id)[0].Equals("user")
+          && !usersInTeam.Contains(user)
+          )
         {
           usersWithUserRole.Add(user);
         }
