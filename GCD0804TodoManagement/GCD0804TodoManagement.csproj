@@ -171,6 +171,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TodoesController.cs" />
     <Compile Include="Controllers\UserInfosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,6 +293,7 @@
     <Content Include="Views\UserInfos\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
