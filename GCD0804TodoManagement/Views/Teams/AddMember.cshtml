@@ -3,7 +3,7 @@
   ViewBag.Title = "AddMember";
 }
 
-<h2>Add Member to @Model.Team.Name team</h2>
+<h2>Add Member to Team</h2>
 
 @Html.ValidationSummary(false, "", new { @class = "bg-danger" })
 
@@ -12,7 +12,7 @@
 
   <div class="form-group">
     Username
-    @Html.HiddenFor(m => m.Team.Id)
+    @Html.HiddenFor(m => m.TeamId)
     @Html.DropDownListFor(m => m.UserId,
      new SelectList(Model.Users, "Id", "Username"),
      new { @class = "form-control" }

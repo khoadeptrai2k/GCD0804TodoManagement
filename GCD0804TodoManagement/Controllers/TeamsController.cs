@@ -61,11 +61,26 @@ namespace GCD0804TodoManagement.Controllers
 
       var viewModel = new TeamUsersViewModel
       {
-        Team = _context.Teams.SingleOrDefault(t => t.Id == id),
+        TeamId = id,
         Users = usersWithUserRole
       };
 
       return View(viewModel);
+    }
+
+    [HttpPost]
+    public ActionResult AddMember(TeamUser model)
+    {
+      var teamUser = new TeamUser
+      {
+        TeamId = model.TeamId,
+        UserId = model.UserId
+      };
+
+      _context.TeamsUsers.Add(teamUser);
+      _context.SaveChanges();
+
+      return RedirectToAction("Index");
     }
   }
 }
