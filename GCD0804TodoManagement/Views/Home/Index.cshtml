@@ -21,3 +21,17 @@
   <p class="lead">An application built with ASP.NET MVC5</p>
 </div>
 
+@if (User.IsInRole("admin"))
+{
+  <div class="form-group">
+    @Html.ActionLink(
+      "Create new Manager",
+      "CreateManager",
+      "Account",
+      null,
+      new { @class = "btn btn-primary" }
+    )
+  </div>
+}
+
+

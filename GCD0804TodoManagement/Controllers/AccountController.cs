@@ -142,6 +142,48 @@ namespace GCD0804TodoManagement.Controllers
       return View();
     }
 
+    [Authorize(Roles = "admin")]
+    [HttpGet]
+    public ActionResult CreateManager()
+    {
+      return View();
+    }
+
+    [Authorize(Roles = "admin")]
+    [HttpPost]
+    public async Task<ActionResult> CreateManager(RegisterViewModel model)
+    {
+      if (ModelState.IsValid)
+      {
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        var result = await UserManager.CreateAsync(user, model.Password);
+        UserManager.AddToRole(user.Id, "manager");
+        if (result.Succeeded)
+        {
+          var userInfo = new UserInfo
+          {
+            FullName = model.FullName,
+            Age = model.Age,
+            UserId = user.Id
+          };
+          _context.UserInfos.Add(userInfo);
+          _context.SaveChanges();
+
+          // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+          // Send an email with this link
+          // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+          // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+          // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+          return RedirectToAction("Index", "Home");
+        }
+        AddErrors(result);
+      }
+
+      // If we got this far, something failed, redisplay form
+      return View(model);
+    }
+
     //
     // POST: /Account/Register
     [HttpPost]
