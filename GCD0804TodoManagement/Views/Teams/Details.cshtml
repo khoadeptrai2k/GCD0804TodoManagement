@@ -20,6 +20,7 @@
     <tr>
       <th>Username</th>
       <th>Email</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,14 @@
       <tr>
         <td>@user.Email</td>
         <td>@user.UserName</td>
+        <td>
+          @Html.ActionLink(
+            "Remove User From Team",
+            "RemoveUser",
+            new { id = ViewBag.TeamId, userId = user.Id },
+            new { @class = "btn btn-danger" }
+          )
+        </td>
       </tr>
     }
   </tbody>
