@@ -19,5 +19,16 @@ namespace GCD0804TodoManagement.Controllers
       var teams = _context.Teams.ToList();
       return View(teams);
     }
+
+    [HttpGet]
+    public ActionResult Details(int id)
+    {
+      var users = _context.TeamsUsers
+        .Where(t => t.TeamId == id)
+        .Select(t => t.User)
+        .ToList();
+
+      return View(users);
+    }
   }
 }

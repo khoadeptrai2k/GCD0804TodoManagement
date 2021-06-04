@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GCD0804TodoManagement.Models.ApplicationUser>
+@{
+  ViewBag.Title = "Details";
+}
+
+<h2>Team Members</h2>
+
+<div class="form-group">
+  @Html.ActionLink(
+    "Back to Team List",
+    "Index",
+    "Teams",
+    null,
+    new { @class = "btn btn-primary" }
+  )
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var user in Model)
+    {
+      <tr>
+        <td>@user.Email</td>
+        <td>@user.UserName</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
