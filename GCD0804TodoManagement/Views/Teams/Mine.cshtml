@@ -1,0 +1,14 @@
+﻿@model IEnumerable<GCD0804TodoManagement.Models.Team>
+@{
+  ViewBag.Title = "Mine";
+}
+
+<h2>My Teams</h2>
+
+<ul class="list-group">
+  <li class="list-group-item active">My Teams</li>
+  @foreach (var team in Model)
+  {
+    <li class="list-group-item">@team.Name</li>
+  }
+</ul>

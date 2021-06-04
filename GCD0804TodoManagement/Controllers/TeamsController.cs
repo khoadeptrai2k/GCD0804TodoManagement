@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace GCD0804TodoManagement.Controllers
 {
-  [Authorize(Roles = "manager")]
   public class TeamsController : Controller
   {
     private ApplicationDbContext _context;
@@ -20,6 +19,7 @@ namespace GCD0804TodoManagement.Controllers
       _userManager = new UserManager<ApplicationUser>(
         new UserStore<ApplicationUser>(new ApplicationDbContext()));
     }
+    [Authorize(Roles = "manager")]
     // GET: Teams
     [HttpGet]
     public ActionResult Index()
@@ -27,6 +27,7 @@ namespace GCD0804TodoManagement.Controllers
       var teams = _context.Teams.ToList();
       return View(teams);
     }
+    [Authorize(Roles = "manager")]
 
     [HttpGet]
     public ActionResult Details(int id)
@@ -40,6 +41,8 @@ namespace GCD0804TodoManagement.Controllers
 
       return View(users);
     }
+    [Authorize(Roles = "manager")]
+
     [HttpGet]
     public ActionResult AddMember(int id)
     {
@@ -70,6 +73,7 @@ namespace GCD0804TodoManagement.Controllers
 
       return View(viewModel);
     }
+    [Authorize(Roles = "manager")]
 
     [HttpPost]
     public ActionResult AddMember(TeamUser model)
@@ -85,6 +89,7 @@ namespace GCD0804TodoManagement.Controllers
 
       return RedirectToAction("Index");
     }
+    [Authorize(Roles = "manager")]
 
     [HttpGet]
     public ActionResult RemoveUser(int id, string userId)
@@ -98,6 +103,19 @@ namespace GCD0804TodoManagement.Controllers
       _context.SaveChanges();
 
       return RedirectToAction("Details", new { id = id });
+    }
+
+    [Authorize(Roles = "user")]
+    public ActionResult Mine()
+    {
+      var userId = User.Identity.GetUserId();
+
+      var teams = _context.TeamsUsers
+        .Where(t => t.UserId.Equals(userId))
+        .Select(t => t.Team)
+        .ToList();
+
+      return View(teams);
     }
   }
 }
