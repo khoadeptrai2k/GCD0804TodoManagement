@@ -1,0 +1,13 @@
+﻿@model IEnumerable<GCD0804TodoManagement.Models.ApplicationUser>
+@{
+  ViewBag.Title = "AddMember";
+}
+
+<h2>AddMember</h2>
+
+<ul>
+  @foreach (var user in Model)
+  {
+    <li>@user.UserName</li>
+  }
+</ul>
