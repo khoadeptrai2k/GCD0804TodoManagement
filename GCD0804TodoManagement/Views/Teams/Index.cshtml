@@ -20,7 +20,13 @@
           new { id = team.Id },
           new { @class = "btn btn-info" }
         )
-        <a href="#" class="btn btn-success">Add User To Team</a>
+        @Html.ActionLink(
+          "Add User To Team",
+          "AddMember",
+          "Teams",
+          new { id = team.Id },
+          new { @class = "btn btn-success" }
+        )
         <a href="#" class="btn btn-danger">Remove User From Team</a>
       </div>
     </div>

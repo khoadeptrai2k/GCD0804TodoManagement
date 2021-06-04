@@ -1,4 +1,5 @@
 ﻿using GCD0804TodoManagement.Models;
+using GCD0804TodoManagement.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
@@ -57,7 +58,14 @@ namespace GCD0804TodoManagement.Controllers
           usersWithUserRole.Add(user);
         }
       }
-      return View(usersWithUserRole);
+
+      var viewModel = new TeamUsersViewModel
+      {
+        Team = _context.Teams.SingleOrDefault(t => t.Id == id),
+        Users = usersWithUserRole
+      };
+
+      return View(viewModel);
     }
   }
 }
