@@ -3,22 +3,19 @@
   ViewBag.Title = "Mine";
 }
 
-<div class="container">
-  <h2>My Teams</h2>
-
-  <div class="row>">
-    <div class="col-md-4">
-      <ul class="list-group">
-        <li class="list-group-item active">
-          My Teams
-          <span class="badge">@Model.Count()</span>
-        </li>
-        @foreach (var team in Model)
-        {
-          <li class="list-group-item">@team.Name</li>
-        }
-      </ul>
-    </div>
+<div class="row">
+  <div class="col-md-4">
+    <h2>My Teams</h2>
+    <ul class="list-group">
+      <li class="list-group-item active">
+        My Teams
+        <span class="badge">@Model.Count()</span>
+      </li>
+      @foreach (var team in Model)
+      {
+        <li class="list-group-item">@team.Name</li>
+      }
+    </ul>
   </div>
 </div>
 

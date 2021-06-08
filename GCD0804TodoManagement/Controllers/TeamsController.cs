@@ -53,6 +53,17 @@ namespace GCD0804TodoManagement.Controllers
         .Select(t => t.User)
         .ToList();
 
+      var VM = new TeamUsersViewModel();
+
+      if (usersInTeam == null)
+      {
+        VM.TeamId = id;
+        VM.Users = users;
+
+
+        return View(VM);
+      }
+
       var usersWithUserRole = new List<ApplicationUser>();
 
       foreach (var user in users)
