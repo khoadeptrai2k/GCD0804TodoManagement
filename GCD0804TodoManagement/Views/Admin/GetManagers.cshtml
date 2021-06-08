@@ -1,0 +1,24 @@
+﻿@model IEnumerable<GCD0804TodoManagement.Models.ApplicationUser>
+@{
+  ViewBag.Title = "GetManagers";
+}
+
+<h2>Show all Managers</h2>
+<div class="row">
+  <div class="col-md-4">
+    <ul class="list-group">
+      <li class="list-group-item active">Managers List</li>
+      @foreach (var manager in Model)
+      {
+        <li class="list-group-item">
+          @manager.UserName
+          <div>
+            <a href="#" class="text-danger">Remove</a>
+            <a href="#" class="text-info">Reset Password</a>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+
