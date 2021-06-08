@@ -13,8 +13,13 @@
         <li class="list-group-item">
           @manager.UserName
           <div>
-            <a href="#" class="text-danger">Remove</a>
-            <a href="#" class="text-info">Reset Password</a>
+            @Html.ActionLink(
+              "Reset Manager Password",
+              "ResetManagerPassword",
+              "Account",
+              new {id = manager.Id},
+              new {@class = "text-info"}
+            )
           </div>
         </li>
       }

@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -322,6 +323,23 @@ namespace GCD0804TodoManagement.Controllers
     public ActionResult ResetPasswordConfirmation()
     {
       return View();
+    }
+    [Authorize(Roles = "admin")]
+    public ActionResult ResetManagerPassword(string id)
+    {
+      var user = UserManager.FindById(id);
+
+
+
+      if (user == null)
+        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+      string resetToken = UserManager.GeneratePasswordResetToken(id);
+      var defaultPassword = "abc@123456";
+
+      var result =
+        UserManager.ResetPassword(id, resetToken, defaultPassword);
+      if (result.Succeeded) return RedirectToAction("GetManagers", "Admin");
+      else return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
     }
 
     //
