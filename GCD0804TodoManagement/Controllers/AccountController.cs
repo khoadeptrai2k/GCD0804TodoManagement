@@ -325,21 +325,20 @@ namespace GCD0804TodoManagement.Controllers
       return View();
     }
     [Authorize(Roles = "admin")]
-    public ActionResult ResetManagerPassword(string id)
+    public async Task<ActionResult> ResetManagerPassword(string id)
     {
-      var user = UserManager.FindById(id);
+      var user = await UserManager.FindByIdAsync(id);
 
 
 
       if (user == null)
         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-      string resetToken = UserManager.GeneratePasswordResetToken(id);
-      var defaultPassword = "abc@123456";
+      await UserManager.RemovePasswordAsync(id);
 
-      var result =
-        UserManager.ResetPassword(id, resetToken, defaultPassword);
-      if (result.Succeeded) return RedirectToAction("GetManagers", "Admin");
-      else return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+      var newPassword = "Abcd@1234";
+      await UserManager.AddPasswordAsync(user.Id, newPassword);
+      return RedirectToAction("GetManagers", "Admin");
+
     }
 
     //
